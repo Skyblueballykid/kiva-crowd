@@ -6,6 +6,7 @@ Dataset:
 Django links:
 https://docs.djangoproject.com/en/3.0/intro/install/
 https://docs.djangoproject.com/en/3.0/topics/install/#database-installation
+https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/skeleton_website
 
 Postgres links:
 https://www.postgresql.org/docs/9.5/textsearch-intro.html
