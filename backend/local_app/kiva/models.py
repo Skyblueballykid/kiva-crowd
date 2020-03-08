@@ -80,6 +80,5 @@ class Loan(models.Model):
             self.id, self.loan_name
         )
         return output
-
     class Meta:
         db_table = 'loan'

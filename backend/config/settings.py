@@ -62,6 +62,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100
+}
+
 CORS_URLS_REGEX = r'^/api/.*$'
 
 ROOT_URLCONF = 'config.urls'
