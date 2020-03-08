@@ -88,11 +88,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': os.getenv('POSTGRES_ENGINE', 'django.db.backends.postgresql_psycopg2'),
+        'NAME': os.getenv('POSTGRES_DB', 'importteamname_kiva'),
+        'USER': os.getenv('POSTGRES_USER', 'importteamname_dbadmin'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'ivJEZ4L4ZLNSsJ6'),
+        'HOST': os.getenv('POSTGRES_HOST', 'localhost'),
+        'PORT': os.getenv('POSTGRES_PORT', '5432'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
