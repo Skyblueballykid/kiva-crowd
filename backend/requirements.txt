@@ -24,7 +24,7 @@ mccabe==0.6.1
 packaging==20.3
 pathspec==0.7.0
 psycopg2-binary==2.8.4
-pygraphviz==1.5
+# pygraphviz==1.5
 pylint==2.4.4
 pyparsing==2.4.6
 pytz==2019.3
