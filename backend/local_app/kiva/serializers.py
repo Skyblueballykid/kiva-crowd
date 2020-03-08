@@ -1,6 +1,24 @@
 from rest_framework import serializers
 from .models import Lender, Loan
 
+class LenderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Lender
+        fields = (
+            'permanent_name',
+            'display_name',
+            'city',
+            'state',
+            'country_code',
+            'member_since',
+            'personal_url',
+            'occupation',
+            'loan_because',
+            'other_info',
+            'loan_purchase_num',
+            'invited_by',
+            'num_invited',
+        )
 
 class LoanSerializer(serializers.ModelSerializer):
     class Meta:
