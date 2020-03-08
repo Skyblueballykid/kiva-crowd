@@ -3,7 +3,7 @@ version: '3'
 services:
   postgres:
     container_name: postgres
-    image: postgres:9.2-alpine
+    image: postgres:9.6-alpine
     volumes:
       - ./db:/var/lib/postgresql
       - ./db/data:/var/lib/postgresql/data
@@ -11,5 +11,4 @@ services:
       - 5432:5432
     environment:
       - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}

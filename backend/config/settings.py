@@ -44,7 +44,9 @@ THIRD_PARTY_APPS = [
     'corsheaders',
 ]
 
-LOCAL_APPS = []
+LOCAL_APPS = [
+    'local_app.kiva',
+]
 
 # See: https://docs.djangoproject.com/en/2.2/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -90,7 +92,7 @@ DATABASES = {
     'default': {
         'ENGINE': os.getenv('POSTGRES_ENGINE', 'django.db.backends.postgresql_psycopg2'),
         'NAME': os.getenv('POSTGRES_DB', 'importteamname_kiva'),
-        'USER': os.getenv('POSTGRES_USER', 'importteamname_dbadmin'),
+        'USER': os.getenv('POSTGRES_USER', 'postgres'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'ivJEZ4L4ZLNSsJ6'),
         'HOST': os.getenv('POSTGRES_HOST', 'localhost'),
         'PORT': os.getenv('POSTGRES_PORT', '5432'),
