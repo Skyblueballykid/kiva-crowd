@@ -98,9 +98,9 @@ DATABASES = {
     'default': {
         'ENGINE': os.getenv('POSTGRES_ENGINE', 'django.db.backends.postgresql_psycopg2'),
         'NAME': os.getenv('POSTGRES_DB', 'importteamname_kiva'),
-        'USER': os.getenv('POSTGRES_USER', 'postgres'),
+        'USER': os.getenv('POSTGRES_USER', 'importteamname_dbadmin'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'ivJEZ4L4ZLNSsJ6'),
-        'HOST': os.getenv('POSTGRES_HOST', 'localhost'),
+        'HOST': os.getenv('POSTGRES_HOST', '127.0.0.1'),
         'PORT': os.getenv('POSTGRES_PORT', '5432'),
     }
 }
