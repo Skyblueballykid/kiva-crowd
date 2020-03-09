@@ -10,6 +10,6 @@ services:
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_DB=importteamname_dbadmin
+      - POSTGRES_DB=importteamname_kiva
       - POSTGRES_USER=importteamname_dbadmin
       - POSTGRES_PASSWORD=ivJEZ4L4ZLNSsJ6
