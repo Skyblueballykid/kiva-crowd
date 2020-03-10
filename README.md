@@ -1,5 +1,5 @@
-## UIUC CS 411: Database Systems Kiva Crowdfunding Project
-# Team: "Import Team_name"
+# UIUC CS 411: Database Systems Kiva Crowdfunding Project
+## Team: "Import Team_name"
 
 
 Lightsail instructions:
