@@ -16,3 +16,8 @@ cd ../../ to get to the root dir and cd srv/docker to get to the docker dir
 
 5. Start the application with:
 docker-compose -f /srv/docker/docker-compose.yml up -d
+
+
+More info about Lightsail:
+https://www.youtube.com/watch?time_continue=3&amp=&v=z525kfneC6E&amp=&feature=emb_title
+https://github.com/mikegcoleman/todo/blob/master/lightsail-compose.sh
