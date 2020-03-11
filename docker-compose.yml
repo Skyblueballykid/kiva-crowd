@@ -4,6 +4,9 @@ services:
   postgres:
     container_name: postgres
     image: postgres:11-alpine
+    volumes:
+      - ./db:/var/lib/postgresql
+      - ./db/data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     environment:
