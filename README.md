@@ -22,3 +22,18 @@ More info about Lightsail:
 https://www.youtube.com/watch?time_continue=3&amp=&v=z525kfneC6E&amp=&feature=emb_title
 
 https://github.com/mikegcoleman/todo/blob/master/lightsail-compose.sh
+
+### Frontend Setup
+
+#### To run with docker
+
+Simply run `docker-compose up --build`. This will build the entire project including the frontend. The frontend
+will be exposed at port `3000` on your machine so you can access it within your browser at `localhost:3000`. The first 
+build of the container may take a couple of minutes, but subsequent builds will be much faster.
+
+#### To run without docker
+
+If you want to run the frontend without docker, first you'll need to install `yarn` (these instructions used `yarn` 
+version `1.22.4`) - see https://classic.yarnpkg.com/en/docs/getting-started. Once you have `yarn` installed 
+navigate to the `frontend` directory and run `yarn start`. This will expose the frontend on port `3000` so it 
+can be accessed within your browser at `localhost:3000`.
