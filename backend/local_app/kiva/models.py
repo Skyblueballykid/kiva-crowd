@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class Lender(models.Model):
     permanent_name = models.CharField(max_length=50, primary_key=True)
@@ -80,5 +81,6 @@ class Loan(models.Model):
             self.id, self.loan_name
         )
         return output
+
     class Meta:
         db_table = 'loan'

@@ -2,7 +2,7 @@
 ## Team: "Import Team_name"
 
 
-Lightsail instructions:
+### Lightsail instructions
 
 1. Login to the AWS instance (credentials in the team google doc)
 
@@ -37,3 +37,14 @@ If you want to run the frontend without docker, first you'll need to install `ya
 version `1.22.4`) - see https://classic.yarnpkg.com/en/docs/getting-started. Once you have `yarn` installed 
 navigate to the `frontend` directory and run `yarn start`. This will expose the frontend on port `3000` so it 
 can be accessed within your browser at `localhost:3000`.
+
+### Backend Tests
+
+All backend test cases should be located under `backend/local_app/kiva/tests` and should follow the file naming convention
+of `test_*.py` (e.g. `test_api_filters.py`).
+
+To run the test suite first bring up the `postgres` container then navigate to the `backend` directory and run 
+`python manage.py makemigrations && python manage.py migrate` (this assumes you are using python 3) if you haven't 
+already applied the migrations. This is necessary because Django will create a test database in the postgres container 
+to run the tests against. Finally, after you've done the above run `python manage.py test`.
+
