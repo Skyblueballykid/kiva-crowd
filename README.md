@@ -22,3 +22,13 @@ More info about Lightsail:
 https://www.youtube.com/watch?time_continue=3&amp=&v=z525kfneC6E&amp=&feature=emb_title
 
 https://github.com/mikegcoleman/todo/blob/master/lightsail-compose.sh
+
+### Backend Tests
+
+All backend test cases should be located under `backend/local_app/kiva/tests` and should follow the file naming convention
+of `test_*.py` (e.g. `test_api_filters.py`).
+
+To run the test suite first bring up the `postgres` container then navigate to the `backend` directory and run 
+`python manage.py makemigrations && python manage.py migrate` (this assumes you are using python 3) if you haven't 
+already applied the migrations. This is necessary because Django will create a test database in the postgres container 
+to run the tests against. Finally, after you've done the above run `python manage.py test`.
