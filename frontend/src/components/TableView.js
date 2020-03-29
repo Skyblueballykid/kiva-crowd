@@ -12,11 +12,13 @@ class TableView extends Component {
     componentDidMount() {
         LoanApi.getLoans().then(
             (data) => {
-                this.setState(
-                    {
-                        loans: data
-                    }
-                )
+                if (data && data.length > 0) {
+                    this.setState(
+                        {
+                            loans: data
+                        }
+                    );
+                }
             }
         );
     }
