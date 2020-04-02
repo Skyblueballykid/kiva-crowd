@@ -30,19 +30,19 @@ class LenderTableView extends Component {
                 <Table size="sm" striped hover>
                     <thead>
                         <tr>
-                            <th>permanent_name</th>
-                            <th>display_name</th>
-                            <th>city</th>
-                            <th>state</th>
-                            <th>country_code</th>
-                            <th>member_since</th>
-                            <th>personal_url</th>
-                            <th>occupation</th>
-                            <th>loan_because</th>
-                            <th>other_info</th>
-                            <th>loan_purchcase_num</th>
-                            <th>invited_by</th>
-                            <th>num_invited</th>
+                            <th>Permanent Name</th>
+                            <th>Display Name</th>
+                            <th>City</th>
+                            <th>State</th>
+                            <th>Country Code</th>
+                            <th>Member Since</th>
+                            <th>Personal URL</th>
+                            <th>Occupation</th>
+                            <th>Loan Because</th>
+                            <th>Other Info</th>
+                            <th>Loan Purchase Number</th>
+                            <th>Invited By</th>
+                            <th>Number Invited</th>
                         </tr>
                     </thead>
                     <tbody>
