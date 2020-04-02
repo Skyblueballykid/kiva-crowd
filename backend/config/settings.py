@@ -27,6 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+CORS_ORIGIN_REGEX_WHITELIST = [
+    r"^http://localhost.*",
+]
+
 # APP CONFIGURATION
 # ------------------------------------------------------------------------------
 DJANGO_APPS = [

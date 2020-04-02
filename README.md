@@ -35,7 +35,7 @@ build of the container may take a couple of minutes, but subsequent builds will 
 
 If you want to run the frontend without docker, first you'll need to install `yarn` (these instructions used `yarn` 
 version `1.22.4`) - see https://classic.yarnpkg.com/en/docs/getting-started. Once you have `yarn` installed 
-navigate to the `frontend` directory and run `yarn start`. This will expose the frontend on port `3000` so it 
+navigate to the `frontend` directory and run `yarn install` to build the dependencies and `yarn start` to start the app. This will expose the frontend on port `3000` so it 
 can be accessed within your browser at `localhost:3000`.
 
 ### Backend Tests
