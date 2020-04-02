@@ -4,7 +4,7 @@ import LoanApi from '../api/LoanApi';
 import Navigation from './Navigation';
 
 
-class TableView extends Component {
+class LoanTableView extends Component {
     state = {
         loans: []
     };
@@ -74,4 +74,4 @@ class TableView extends Component {
     }
 }
 
-export default TableView;
+export default LoanTableView;
