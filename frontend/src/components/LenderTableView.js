@@ -10,7 +10,7 @@ class LenderTableView extends Component {
     };
 
     componentDidMount() {
-        LenderApi.getlenders().then(
+        LenderApi.getLenders().then(
             (data) => {
                 if (data && data.length > 0) {
                     this.setState(
@@ -30,19 +30,19 @@ class LenderTableView extends Component {
                 <Table size="sm" striped hover>
                     <thead>
                         <tr>
-                            <th>permanent name</th>
-                            <th>display name</th>
+                            <th>permanent_name</th>
+                            <th>display_name</th>
                             <th>city</th>
                             <th>state</th>
-                            <th>country code</th>
-                            <th>member since</th>
-                            <th>personal url</th>
+                            <th>country_code</th>
+                            <th>member_since</th>
+                            <th>personal_url</th>
                             <th>occupation</th>
-                            <th>loan because</th>
-                            <th>other info</th>
-                            <th>loan purchcase number</th>
-                            <th>invited by</th>
-                            <th>number invited</th>
+                            <th>loan_because</th>
+                            <th>other_info</th>
+                            <th>loan_purchcase_num</th>
+                            <th>invited_by</th>
+                            <th>num_invited</th>
                         </tr>
                     </thead>
                     <tbody>
