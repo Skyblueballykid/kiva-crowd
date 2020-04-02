@@ -16,7 +16,7 @@ services:
       - postgres
 
   postgres:
-    container_name: postgres
+    container_name: postgresdb
     image: postgres:11-alpine
     volumes:
       - ./db:/var/lib/postgresql
