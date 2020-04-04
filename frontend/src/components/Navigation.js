@@ -17,10 +17,7 @@ class Navigation extends Component {
                   <NavbarBrand href="/table/">kiva-crowd</NavbarBrand>
                   <Nav className="kiva-navbar" navbar>
                     <NavItem>
-                      <NavLink href="/table/loans/">Loans Table</NavLink>
-                    </NavItem>
-                    <NavItem>
-                      <NavLink href="/table/lenders/">Lenders Table</NavLink>
+                      <NavLink href="/table/">Table</NavLink>
                     </NavItem>
                     <NavItem>
                       <NavLink href="/search/">Search</NavLink>
