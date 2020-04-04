@@ -14,7 +14,7 @@ class Navigation extends Component {
         return (
             <div class="mb-5">
               <Navbar color="light" light expand="md">
-                  <NavbarBrand href="/table/">kiva-crowd</NavbarBrand>
+                  <NavbarBrand href="/table/">Kiva Crowd</NavbarBrand>
                   <Nav className="kiva-navbar" navbar>
                     <NavItem>
                       <NavLink href="/table/loans/">Loans Table</NavLink>
