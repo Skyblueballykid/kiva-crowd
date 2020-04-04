@@ -4,7 +4,7 @@ import LoanApi from '../api/LoanApi';
 import Navigation from './Navigation';
 
 
-class TableView extends Component {
+class LoanTableView extends Component {
     state = {
         loans: []
     };
@@ -30,19 +30,19 @@ class TableView extends Component {
                 <Table size="sm" striped hover>
                     <thead>
                         <tr>
-                            <th>id</th>
-                            <th>loan_name</th>
-                            <th>loan_amount</th>
-                            <th>status</th>
-                            <th>loan_use</th>
-                            <th>sector_name</th>
-                            <th>country_name</th>
-                            <th>currency</th>
-                            <th>posted_time</th>
-                            <th>raised_time</th>
-                            <th>lender_term</th>
-                            <th>num_lenders_total</th>
-                            <th>repayment_interval</th>
+                            <th>ID</th>
+                            <th>Loan Name</th>
+                            <th>Loan Amount</th>
+                            <th>Status</th>
+                            <th>Loan Use</th>
+                            <th>Sector Name</th>
+                            <th>Country Name</th>
+                            <th>Currency</th>
+                            <th>Posted Time</th>
+                            <th>Raised Time</th>
+                            <th>Lender Term</th>
+                            <th>Total Lenders</th>
+                            <th>Repayment Interval</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -74,4 +74,4 @@ class TableView extends Component {
     }
 }
 
-export default TableView;
+export default LoanTableView;
