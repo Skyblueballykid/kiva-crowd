@@ -1,42 +1,45 @@
 version: "3"
 
 services:
+  postgres:
+    container_name: postgresdb
+    image: postgres:11-alpine
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db:/var/lib/postgresql
+      - ./db/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
   backend:
     container_name: backend
     build:
       context: ./backend
-    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "5000:5000"
     volumes:
       - ./backend:/var/app
-    ports:
-      - "8000:8000"
-    environment:
-      - POSTGRES_HOST=postgres
     depends_on:
       - postgres
-
-  postgres:
-    container_name: postgresdb
-    image: postgres:11-alpine
-    volumes:
-      - ./db:/var/lib/postgresql
-      - ./db/data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
     environment:
-      - POSTGRES_DB=importteamname_kiva
-      - POSTGRES_USER=importteamname_dbadmin
-      - POSTGRES_PASSWORD=ivJEZ4L4ZLNSsJ6
+      WAIT_HOSTS: postgres:5432
+      POSTGRES_HOST: postgres
 
   frontend:
     container_name: frontend
     build:
       context: ./frontend
+      args:
+        API_HOST: ${API_HOST}
     ports:
-      - "3000:80"
+      - "80:80"
     volumes:
       - ./frontend/public:/app/public
       - ./frontend/src:/app/src
     depends_on:
       - backend
-
+    environment:
+      WAIT_HOSTS: backend:5000

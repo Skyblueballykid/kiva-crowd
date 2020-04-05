@@ -9,19 +9,15 @@ class LoanTableView extends Component {
         loans: []
     };
 
-    componentDidMount() {
-        LoanApi.getLoans().then(
-            (data) => {
-                if (data && data.length > 0) {
-                    this.setState(
-                        {
-                            loans: data
-                        }
-                    );
-                }
-            }
-        );
-    }
+  componentDidMount() {
+    LoanApi.getLoans().then((data) => {
+      if (data && data.length > 0) {
+        this.setState({
+          loans: data
+        });
+      }
+    });
+  }
 
     render() {
         return (

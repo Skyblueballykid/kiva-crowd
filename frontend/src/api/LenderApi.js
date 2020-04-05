@@ -1,6 +1,6 @@
 export default {
     getLenders() {
-        return fetch('http://localhost:8000/api/lender/')
+        return fetch('/api/lender/')
             .then(res => res.json())
             .then(
                 (data) => {

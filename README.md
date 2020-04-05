@@ -27,24 +27,49 @@ https://github.com/mikegcoleman/todo/blob/master/lightsail-compose.sh
 
 #### To run with docker
 
-Simply run `docker-compose up --build`. This will build the entire project including the frontend. The frontend
-will be exposed at port `3000` on your machine so you can access it within your browser at `localhost:3000`. The first 
-build of the container may take a couple of minutes, but subsequent builds will be much faster.
+Simply run:
+
+```bash
+docker-compose up --build
+```
+
+This will build the entire project including the frontend. The first build of the container may take a couple of minutes,
+but subsequent builds will be much faster.
+
+The frontend will be ready at `http://localhost`
 
 #### To run without docker
 
-If you want to run the frontend without docker, first you'll need to install `yarn` (these instructions used `yarn` 
-version `1.22.4`) - see https://classic.yarnpkg.com/en/docs/getting-started. Once you have `yarn` installed 
-navigate to the `frontend` directory and run `yarn install` to build the dependencies and `yarn start` to start the app. This will expose the frontend on port `3000` so it 
-can be accessed within your browser at `localhost:3000`.
+If you want to run the frontend without docker, first you'll need to install `yarn` (these instructions used `yarn`
+version `1.22.4`) - see https://classic.yarnpkg.com/en/docs/getting-started. Once you have `yarn` installed navigate
+to the `frontend` directory and run:
+
+```bash
+cd frontend
+yarn install
+yarn start
+```
+
+Your should open up at `http://localhost:3000`
 
 ### Backend Tests
 
-All backend test cases should be located under `backend/local_app/kiva/tests` and should follow the file naming convention
-of `test_*.py` (e.g. `test_api_filters.py`).
+All backend test cases should be located under `backend/local_app/kiva/tests` and should follow the file naming
+convention of `test_*.py` (e.g. `test_api_filters.py`).
 
-To run the test suite first bring up the `postgres` container then navigate to the `backend` directory and run 
-`python manage.py makemigrations && python manage.py migrate` (this assumes you are using python 3) if you haven't 
-already applied the migrations. This is necessary because Django will create a test database in the postgres container 
-to run the tests against. Finally, after you've done the above run `python manage.py test`.
+To run the test suite first bring up the `postgres` container then navigate to the `backend` directory and run:
+
+```bash
+cd backend
+python manage.py makemigrations
+python manage.py migrate
+```
+
+(this assumes you are using python 3) if you haven't already applied the migrations. This is necessary because
+Django will create a test database in the postgres container to run the tests against. Finally, after you've
+done the above run:
+
+```bash
+python manage.py test
+```
 
