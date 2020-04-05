@@ -72,4 +72,8 @@ done the above run:
 ```bash
 python manage.py test
 ```
+#### To cleanup / refresh docker environments
 
+```bash
+docker-compose down
+```
