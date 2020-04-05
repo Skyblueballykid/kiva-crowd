@@ -8,6 +8,7 @@ services:
       - "5432:5432"
     volumes:
       - ./db:/var/lib/postgresql
+      - ./db/initdb:/docker-entrypoint-initdb.d
       - ./db/data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
@@ -16,6 +17,7 @@ services:
 
   backend:
     container_name: backend
+    restart: on-failure
     build:
       context: ./backend
     ports:
@@ -30,6 +32,7 @@ services:
 
   frontend:
     container_name: frontend
+    restart: on-failure
     build:
       context: ./frontend
       args:
