@@ -4,5 +4,6 @@
 
 # Postgres local data (too big to include in git)
 data/
+.ash_history
 
 *.pyc
