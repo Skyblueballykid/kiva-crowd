@@ -50,7 +50,7 @@ to the `frontend` directory and run:
 ```bash
 cd frontend
 yarn install
-yarn start
+REACT_APP_API=http://localhost:5000 yarn start
 ```
 
 Your should open up at `http://localhost:3000`
