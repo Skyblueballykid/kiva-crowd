@@ -7,12 +7,9 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./db:/var/lib/postgresql
       - ./db/initdb:/docker-entrypoint-initdb.d
-      - ./db/data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
   backend:
@@ -29,6 +26,8 @@ services:
     environment:
       WAIT_HOSTS: postgres:5432
       POSTGRES_HOST: postgres
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
   frontend:
     container_name: frontend
