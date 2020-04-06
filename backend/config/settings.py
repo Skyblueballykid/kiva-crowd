@@ -27,10 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CORS_ORIGIN_REGEX_WHITELIST = [
-    r"^http://localhost.*",
-]
-
 # APP CONFIGURATION
 # ------------------------------------------------------------------------------
 DJANGO_APPS = [
@@ -67,6 +63,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
