@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Table } from 'reactstrap';
-import LoanApi from '../api/LoanApi';
+import api from '../api'
 import Navigation from './Navigation';
 
 
@@ -10,7 +10,7 @@ class LoanTableView extends Component {
     };
 
   componentDidMount() {
-    LoanApi.getLoans().then((data) => {
+    api.getLoans().then((data) => {
       if (data && data.length > 0) {
         this.setState({
           loans: data

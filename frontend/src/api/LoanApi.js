@@ -1,15 +1,13 @@
-import axios from 'axios'
+import API from './API';
 
-const { REACT_APP_API } = process.env;
-
-export default {
-  async getLoans() {
-    try {
-      const res = await axios.get(`${REACT_APP_API}/api/loan/`)
-      const { results } = res.data
-      return results
-    } catch (error) {
-      console.log('error', error)
-    }
+async function getLoans() {
+  try {
+    const res = await API.get('/api/loan/');
+    const { results } = res.data;
+    return results;
+  } catch (error) {
+    console.log('error', error);
   }
-};
+}
+
+export default getLoans;
