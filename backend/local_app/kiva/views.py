@@ -8,8 +8,8 @@ from .filters import LoanFilter, LenderFilter
 from .statistics import LoanStats, LenderStats
 
 
-class LenderList(generics.ListAPIView):
-    '''GET all Lenders endpoint'''
+class LenderList(generics.ListCreateAPIView):
+    '''GET all Lenders and POST endpoint'''
     queryset = Lender.objects.all()
     serializer_class = LenderSerializer
     filter_backends = [filters.DjangoFilterBackend]
@@ -22,8 +22,8 @@ class LenderDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = LenderSerializer
 
 
-class LoanList(generics.ListAPIView):
-    '''GET all Loans endpoint'''
+class LoanList(generics.ListCreateAPIView):
+    '''GET all Loans and POST endpoint'''
     queryset = Loan.objects.all()
     serializer_class = LoanSerializer
     filter_backends = [filters.DjangoFilterBackend]
@@ -34,7 +34,6 @@ class LoanDetail(generics.RetrieveUpdateDestroyAPIView):
     '''CRUD Loan endpoint'''
     queryset = Loan.objects.all()
     serializer_class = LoanSerializer
-
 
 class LoanStatisticsList(generics.ListAPIView):
     '''Placeholder for Loan statistics endpoint'''
