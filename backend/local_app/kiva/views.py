@@ -1,6 +1,4 @@
 from rest_framework import generics
-from rest_framework.views import APIView
-from rest_framework.response import Response
 from django_filters import rest_framework as filters
 from django.core import serializers
 
@@ -19,7 +17,7 @@ class LenderList(generics.ListAPIView):
 
 
 class LenderDetail(generics.RetrieveUpdateDestroyAPIView):
-    '''GET one Lender endpoint'''
+    '''CRUD Lender endpoint'''
     queryset = Lender.objects.all()
     serializer_class = LenderSerializer
 
@@ -33,25 +31,9 @@ class LoanList(generics.ListAPIView):
 
 
 class LoanDetail(generics.RetrieveUpdateDestroyAPIView):
-    '''Get one Loan endpoint'''
+    '''CRUD Loan endpoint'''
     queryset = Loan.objects.all()
     serializer_class = LoanSerializer
-
-
-# class CreateLoan(APIView):
-#     '''POST Loan endpoint'''
-
-#     def post_loan(self, request, format=None):
-#         serializer = LoanSerializer(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-# class UpdateLoan(APIView):
-#     '''PUT Loan endpoint'''
-
-#     def put_loan(self, request, id, format=None):
 
 
 class LoanStatisticsList(generics.ListAPIView):
