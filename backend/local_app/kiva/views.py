@@ -5,7 +5,7 @@ from django.core import serializers
 from .models import Lender, Loan
 from .serializers import LenderSerializer, LoanSerializer
 from .filters import LoanFilter, LenderFilter
-from .statistics import Insights_sql
+from .statistics import LoanStats, LenderStats
 
 
 class LenderList(generics.ListCreateAPIView):
@@ -35,27 +35,19 @@ class LoanDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Loan.objects.all()
     serializer_class = LoanSerializer
 
-
-
-class Stats_1List(generics.ListAPIView):
-    '''Average Loan Price per country sorted in descending order'''
-    Stats = Insights_sql()
-    query = Stats.get_average_loan_per_country()
+class LoanStatisticsList(generics.ListAPIView):
+    '''Placeholder for Loan statistics endpoint'''
+    LoanStats = LoanStats()
+    query = LoanStats.get_all_loans()
     queryset = Loan.objects.raw(query)
     serializer_class = LoanSerializer
 
+class LenderStatisticsList(generics.ListAPIView):
+    '''Placeholder for Lender statistics endpoint'''
+    LenderStats = LenderStats()
+    query = LenderStats.get_all_lenders()
+    queryset = Lender.objects.raw(query)
+    serializer_class = LenderSerializer
 
-class Stats_2List(generics.ListAPIView):
-    '''Most common sectors and activities for loan use'''
-    Stats = Insights_sql()
-    query = Stats.get_loan_sector_info()
-    queryset = Loan.objects.raw(query)
-    serializer_class = LoanSerializer
 
 
-class Stats_3List(generics.ListAPIView):
-    '''Average numbers of lenders per loan grouped by sector and activity'''
-    Stats = Insights_sql()
-    query = Stats.get_lenders_per_loan_by_activity()
-    queryset = Loan.objects.raw(query)
-    serializer_class = LoanSerializer

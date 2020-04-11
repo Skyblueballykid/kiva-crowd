@@ -2,27 +2,23 @@ from django.db import connection, models
 
 from .models import Loan, Lender
 
-class Insights_sql(object):
-    '''
-    1. Loan Insight: Average Loan Price per country sorted in descending order
+class LoanStats(object):
+    '''Performs the following raw SQL queries on the Loans model:
+    1. get_all_loans selects all rows and columns from the Loans table 
     '''
     
-    def get_average_loan_per_country(self):
-        query = 'select 1 as id, trunc(avg(loan_amount)) as average_loan, country_name from loan group by country_name order by avg(loan_amount) desc'
+    def get_all_loans(self):
+        query = 'SELECT * FROM loan LIMIT 100'
         return query
 
-    '''
-    2. Insights on Loans and Lenders : Most common sectors and activities for loan use 
-    '''
-    def get_loan_sector_info(self):
-        query = 'select 1 as id,sector_name, activity_name, trunc(avg(lender_term)) as average_lender_term_in_months, count(sector_name) as Count_of_loans, trunc(avg(loan_amount)) as Average_loan from loan group by sector_name, activity_name order by count(sector_name) desc'
-        return query
 
+class LenderStats(object):
+    '''Performs the following raw SQL queries on the Lenders model:
+    1. get_all_lenders selects all rows and columns from the Lenders table
     '''
-    3. Insights on Loans and Lenders: Average numbers of lenders per loan grouped by sector and activity
-    '''
-    def get_lenders_per_loan_by_activity(self):
-        query = 'select 1 as id,trunc(avg(a.count_of_lenders)) as average_lenders_per_loan, b.sector_name, b.activity_name from( SELECT loan_id, LENGTH(lenders) - LENGTH(REPLACE(lenders, \' \', \'\')) + 1 as Count_of_lenders FROM loan_lender order by count_of_lenders desc) a inner join loan b on a.loan_id = b.id group by b.sector_name, b.activity_name order by average_lenders_per_loan desc'
+
+    def get_all_lenders(self):
+        query = 'SELECT * FROM Lender LIMIT 100'
         return query
 
 

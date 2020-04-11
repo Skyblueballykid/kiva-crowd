@@ -1,6 +1,6 @@
 export default {
     getAllLoans() {
-        return fetch('http://localhost:8000/api/statistics/stats_1')
+        return fetch('http://localhost:8000/api/statistics/loanstats')
             .then(res => res.json())
             .then(
                 (data) => {
@@ -10,7 +10,7 @@ export default {
             .catch(console.log);
     },
     getAllLenders() {
-        return fetch('http://localhost:8000/api/statistics/stats_2')
+        return fetch('http://localhost:8000/api/statistics/lenderstats')
             .then(res => res.json())
             .then(
                 (data) => {
