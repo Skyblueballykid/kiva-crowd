@@ -9,7 +9,12 @@ from .statistics import Insights_sql
 
 
 class LenderList(generics.ListCreateAPIView):
-    '''GET all Lenders and POST endpoint'''
+    '''GET all Lenders and POST endpoint
+    SQL Equivalents: 
+    SELECT * from Lenders
+    AND
+    INSERT INTO Lenders...    
+    '''
     queryset = Lender.objects.all()
     serializer_class = LenderSerializer
     filter_backends = [filters.DjangoFilterBackend]
@@ -17,13 +22,25 @@ class LenderList(generics.ListCreateAPIView):
 
 
 class LenderDetail(generics.RetrieveUpdateDestroyAPIView):
-    '''CRUD Lender endpoint'''
+    '''CRUD Lenders endpoint
+    SQL Equivalents:
+    SELECT * FROM Lenders WHERE primary_name = ...
+    AND
+    UPDATE Lenders WHERE primary_name=... SET fields= ...
+    AND
+    DELETE * FROM Lenders WHERE primary_name = ...
+    '''
     queryset = Lender.objects.all()
     serializer_class = LenderSerializer
 
 
 class LoanList(generics.ListCreateAPIView):
-    '''GET all Loans and POST endpoint'''
+    '''GET all Loans and POST endpoint
+    SQL Equivalents: 
+    SELECT * from Loans
+    AND
+    INSERT INTO Loans...    
+    '''
     queryset = Loan.objects.all()
     serializer_class = LoanSerializer
     filter_backends = [filters.DjangoFilterBackend]
@@ -31,7 +48,16 @@ class LoanList(generics.ListCreateAPIView):
 
 
 class LoanDetail(generics.RetrieveUpdateDestroyAPIView):
-    '''CRUD Loan endpoint'''
+    '''CRUD Loan endpoint
+    SQL Equivalents:
+    SELECT * FROM Loans WHERE loan_id = ...
+    AND
+    UPDATE Loans WHERE loan_id=... SET fields= ...
+    AND
+    DELETE * FROM Loans WHERE loan_id = ...
+    
+    
+    '''
     queryset = Loan.objects.all()
     serializer_class = LoanSerializer
 
