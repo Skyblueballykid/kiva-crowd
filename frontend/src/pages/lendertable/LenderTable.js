@@ -5,12 +5,12 @@ const StyledDiv = styled.div`
   min-height: 88vh;
 `;
 
-const StatisticsView = () => {
+const LenderTable = () => {
   return (
     <StyledDiv>
-      <h2>Statistics View</h2>
+      <h2>Lender Table View</h2>
     </StyledDiv>
   );
 };
 
-export default StatisticsView;
+export default LenderTable;
