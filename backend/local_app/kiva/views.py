@@ -2,8 +2,10 @@ from rest_framework import generics
 from django_filters import rest_framework as filters
 from django.core import serializers
 
-from .models import Lender, Loan
-from .serializers import LenderSerializer, LoanSerializer
+from .models import Lender, Loan, LoanStatsAvgLoanByCountry, LoanStatsCommonSectorsAndActivities,\
+    LoanStatsAvgLendersGroupedBySectorAndActivity
+from .serializers import LenderSerializer, LoanSerializer, LoanStatsAvgLoanByCountrySerializer,\
+    LoanStatsCommonSectorsAndActivitiesSerializer, LoanStatsAvgLendersGroupedBySectorAndActivitySerializer
 from .filters import LoanFilter, LenderFilter
 from .statistics import Insights_sql
 
@@ -62,26 +64,25 @@ class LoanDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = LoanSerializer
 
 
-
 class Stats_1List(generics.ListAPIView):
     '''Average Loan Price per country sorted in descending order'''
     Stats = Insights_sql()
     query = Stats.get_average_loan_per_country()
-    queryset = Loan.objects.raw(query)
-    serializer_class = LoanSerializer
+    queryset = LoanStatsAvgLoanByCountry.objects.raw(query)
+    serializer_class = LoanStatsAvgLoanByCountrySerializer
 
 
 class Stats_2List(generics.ListAPIView):
     '''Most common sectors and activities for loan use'''
     Stats = Insights_sql()
     query = Stats.get_loan_sector_info()
-    queryset = Loan.objects.raw(query)
-    serializer_class = LoanSerializer
+    queryset = LoanStatsCommonSectorsAndActivities.objects.raw(query)
+    serializer_class = LoanStatsCommonSectorsAndActivitiesSerializer
 
 
 class Stats_3List(generics.ListAPIView):
     '''Average numbers of lenders per loan grouped by sector and activity'''
     Stats = Insights_sql()
     query = Stats.get_lenders_per_loan_by_activity()
-    queryset = Loan.objects.raw(query)
-    serializer_class = LoanSerializer
+    queryset = LoanStatsAvgLendersGroupedBySectorAndActivity.objects.raw(query)
+    serializer_class = LoanStatsAvgLendersGroupedBySectorAndActivitySerializer
