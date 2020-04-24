@@ -60,3 +60,8 @@ class LenderFilter(django_filters.FilterSet):
             'member_since',
             'loan_purchase_num'
         ]
+
+
+class LoanSearchFilter(django_filters.FilterSet):
+    # This is only added here so that the swagger docs will pickup the filter
+    search = django_filters.CharFilter()

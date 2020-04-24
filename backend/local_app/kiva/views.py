@@ -1,12 +1,13 @@
 from rest_framework import generics
 from django_filters import rest_framework as filters
 from django.core import serializers
+from django.contrib.postgres.search import SearchVector
 
 from .models import Lender, Loan, LoanStatsAvgLoanByCountry, LoanStatsCommonSectorsAndActivities,\
     LoanStatsAvgLendersGroupedBySectorAndActivity
 from .serializers import LenderSerializer, LoanSerializer, LoanStatsAvgLoanByCountrySerializer,\
     LoanStatsCommonSectorsAndActivitiesSerializer, LoanStatsAvgLendersGroupedBySectorAndActivitySerializer
-from .filters import LoanFilter, LenderFilter
+from .filters import LoanFilter, LenderFilter, LoanSearchFilter
 from .statistics import Insights_sql
 
 
@@ -47,6 +48,20 @@ class LoanList(generics.ListCreateAPIView):
     serializer_class = LoanSerializer
     filter_backends = [filters.DjangoFilterBackend]
     filterset_class = LoanFilter
+
+
+class LoanListSearch(generics.ListAPIView):
+    serializer_class = LoanSerializer
+    filter_backends = [filters.DjangoFilterBackend]
+    filterset_class = LoanSearchFilter
+
+    def get_queryset(self):
+        search = self.request.query_params.get('search', None)
+        if search is not None:
+            queryset = Loan.objects.annotate(search=SearchVector('description_translated')).filter(search=search)
+        else:
+            queryset = Loan.objects.all()
+        return queryset
 
 
 class LoanDetail(generics.RetrieveUpdateDestroyAPIView):
