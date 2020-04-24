@@ -84,3 +84,34 @@ class Loan(models.Model):
 
     class Meta:
         db_table = 'loan'
+
+
+class LoanStatsAvgLoanByCountry(models.Model):
+    country_name = models.TextField()
+    average_loan = models.FloatField()
+
+    class Meta:
+        db_table = 'loan'
+        managed = False
+
+
+class LoanStatsCommonSectorsAndActivities(models.Model):
+    sector_name = models.TextField()
+    activity_name = models.TextField()
+    average_lender_term_in_months = models.IntegerField()
+    count_of_loans = models.IntegerField()
+    average_loan = models.FloatField()
+
+    class Meta:
+        db_table = 'loan'
+        managed = False
+
+
+class LoanStatsAvgLendersGroupedBySectorAndActivity(models.Model):
+    average_lenders_per_loan = models.FloatField()
+    sector_name = models.TextField()
+    activity_name = models.TextField()
+
+    class Meta:
+        db_table = 'loan'
+        managed = False
