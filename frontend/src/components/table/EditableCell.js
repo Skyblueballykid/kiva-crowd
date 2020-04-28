@@ -22,7 +22,7 @@ const EditableCell = ({
           }}
           rules={[
             {
-              required: true,
+              required: false,
               message: `Please Input ${title}!`,
             },
           ]}
