@@ -23,22 +23,22 @@ const LenderTable = () => {
     fetchData();
   }, []);
 
-  const isEditing = (record) => record.id === editingKey;
+  const isEditing = (record) => record.permanent_name === editingKey;
 
   const edit = (record) => {
     form.setFieldsValue({ ...record });
-    setEditingKey(record.id);
+    setEditingKey(record.permanent_name);
   };
 
   const cancel = () => {
     setEditingKey('');
   };
 
-  const save = async (id) => {
+  const save = async (permanent_name) => {
     try {
       const row = await form.validateFields();
       const newData = [...data];
-      const index = newData.findIndex((item) => id === item.id);
+      const index = newData.findIndex((item) => permanent_name === item.permanent_name);
 
       if (index > -1) {
         const item = newData[index];
@@ -66,7 +66,7 @@ const LenderTable = () => {
           <span>
             <a
               href="javascript:;"
-              onClick={() => save(record.id)}
+              onClick={() => save(record.permanent_name)}
               style={{
                 marginRight: 8,
               }}
