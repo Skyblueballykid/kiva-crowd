@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './AppLayout.css';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Input } from 'antd';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -12,6 +12,7 @@ import {
 import { Link } from 'react-router-dom';
 
 const { Header, Sider, Content } = Layout;
+const { Search } = Input;
 
 class AppLayout extends React.Component {
   state = {
@@ -28,6 +29,7 @@ class AppLayout extends React.Component {
   render() {
     const { collapsed } = this.state;
 
+
     return (
       <Layout>
         <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -37,6 +39,7 @@ class AppLayout extends React.Component {
             mode="inline"
             defaultSelectedKeys={['/table/loans']}
           >
+            <Search placeholder="input search text" onSearch={value => console.log(value)} enterButton />
             <Menu.Item key="/table/loans">
               <Link to="/table/loans">
                 <InsertRowAboveOutlined />
