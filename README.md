@@ -1,6 +1,8 @@
 # UIUC CS 411: Database Systems Kiva Crowdfunding Project
 ## Team: "Import Team_name"
 
+![Kiva Project Screenshot](project-screenshot.png)
+
 
 ### Lightsail instructions
 
