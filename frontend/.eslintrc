@@ -12,8 +12,9 @@
   ],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/destructuring-assignment": [1, "always", { "ignoreClassFields": true }],
     "react/state-in-constructor": 0,
     "import/prefer-default-export": 0,
-    "react/destructuring-assignment": [1, "always", { "ignoreClassFields": true }]
+
   }
 }

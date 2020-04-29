@@ -1,3 +1,6 @@
+/* eslint react/prop-types: 0 */
+/* eslint react/jsx-props-no-spreading: 0 */
+
 import React from 'react';
 import { Input, InputNumber,  Form } from 'antd';
 
@@ -6,8 +9,6 @@ const EditableCell = ({
   dataIndex,
   title,
   inputType,
-  record,
-  index,
   children,
   ...restProps
 }) => {
