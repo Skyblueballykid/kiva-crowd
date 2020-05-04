@@ -2,6 +2,7 @@ from rest_framework import generics
 from django_filters import rest_framework as filters
 from django.core import serializers
 from django.contrib.postgres.search import SearchVector
+from django.db import transaction
 
 from .models import Lender, Loan, LoanStatsAvgLoanByCountry, LoanStatsCommonSectorsAndActivities,\
     LoanStatsAvgLendersGroupedBySectorAndActivity
@@ -32,9 +33,14 @@ class LenderDetail(generics.RetrieveUpdateDestroyAPIView):
     UPDATE Lenders WHERE primary_name=... SET fields= ...
     AND
     DELETE * FROM Lenders WHERE primary_name = ...
+
+    Note: django uses transactions by default to guarantee integrity of orm operations. Using transaction.atomic() below
+    guarantees that the database changes are only committed if the entire http request succeeds (see
+    https://docs.djangoproject.com/en/3.0/topics/db/transactions/#tying-transactions-to-http-requests)
     '''
-    queryset = Lender.objects.all()
-    serializer_class = LenderSerializer
+    with transaction.atomic():
+        queryset = Lender.objects.all()
+        serializer_class = LenderSerializer
 
 
 class LoanList(generics.ListCreateAPIView):
@@ -72,11 +78,14 @@ class LoanDetail(generics.RetrieveUpdateDestroyAPIView):
     UPDATE Loans WHERE loan_id=... SET fields= ...
     AND
     DELETE * FROM Loans WHERE loan_id = ...
-    
-    
+
+    Note: django uses transactions by default to guarantee integrity of orm operations. Using transaction.atomic() below
+    guarantees that the database changes are only committed if the entire http request succeeds (see
+    https://docs.djangoproject.com/en/3.0/topics/db/transactions/#tying-transactions-to-http-requests)
     '''
-    queryset = Loan.objects.all()
-    serializer_class = LoanSerializer
+    with transaction.atomic():
+        queryset = Loan.objects.all()
+        serializer_class = LoanSerializer
 
 
 class Stats_1List(generics.ListAPIView):
