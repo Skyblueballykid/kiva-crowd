@@ -1,5 +1,7 @@
 from rest_framework import serializers
-from .models import Lender, Loan
+from .models import Lender, Loan, LoanStatsAvgLoanByCountry, LoanStatsCommonSectorsAndActivities,\
+    LoanStatsAvgLendersGroupedBySectorAndActivity
+
 
 class LenderSerializer(serializers.ModelSerializer):
     class Meta:
@@ -19,6 +21,7 @@ class LenderSerializer(serializers.ModelSerializer):
             'invited_by',
             'num_invited',
         )
+
 
 class LoanSerializer(serializers.ModelSerializer):
     class Meta:
@@ -50,4 +53,35 @@ class LoanSerializer(serializers.ModelSerializer):
             'borrower_genders',
             'repayment_interval',
             'distribution_model'
+        )
+
+
+class LoanStatsAvgLoanByCountrySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LoanStatsAvgLoanByCountry
+        fields = (
+            'country_name',
+            'average_loan'
+        )
+
+
+class LoanStatsCommonSectorsAndActivitiesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LoanStatsCommonSectorsAndActivities
+        fields = (
+            'sector_name',
+            'activity_name',
+            'average_lender_term_in_months',
+            'count_of_loans',
+            'average_loan'
+        )
+
+
+class LoanStatsAvgLendersGroupedBySectorAndActivitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LoanStatsAvgLendersGroupedBySectorAndActivity
+        fields = (
+            'average_lenders_per_loan',
+            'sector_name',
+            'activity_name'
         )
