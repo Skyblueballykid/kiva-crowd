@@ -4,6 +4,13 @@ from django.core import serializers
 from django.contrib.postgres.search import SearchVector
 from django.db import transaction
 
+# Adding these for Panda + Numpy analysis 
+from django_pandas.io import read_frame
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+
+
 from .models import Lender, Loan, LoanStatsAvgLoanByCountry, LoanStatsCommonSectorsAndActivities,\
     LoanStatsAvgLendersGroupedBySectorAndActivity
 from .serializers import LenderSerializer, LoanSerializer, LoanStatsAvgLoanByCountrySerializer,\
@@ -108,3 +115,16 @@ class Stats_3List(generics.ListAPIView):
     query = Stats.get_lenders_per_loan_by_activity()
     queryset = LoanStatsAvgLendersGroupedBySectorAndActivity.objects.raw(query)
     serializer_class = LoanStatsAvgLendersGroupedBySectorAndActivitySerializer
+
+
+# Possibility for using Data Frames from Pandas in our analysis instead of only using SQL Queries
+
+# class Stats_3List(APIView):
+#     authentication_classes = []
+#     permission_classes = []
+
+#     def get(self, request, format=None):
+#         data = Loan.objects.all()        # Perform database query
+#         df = read_frame(data, fieldnames=['id'])           # Transform queryset into pandas dataframe 
+#         print(df)
+#         return Response(df)              # Return the result in JSON via Django REST Framework
