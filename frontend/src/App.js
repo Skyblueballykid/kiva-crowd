@@ -5,7 +5,6 @@ import AppLayout from './components/applayout';
 import LoanTable from './pages/loantable';
 import LenderTable from './pages/lendertable';
 import Statistic from './pages/statistic';
-import SearchTable from './pages/searchtable';
 
 function App() {
   return (
@@ -13,7 +12,6 @@ function App() {
       <AppLayout>
         <Switch>
           <Route path="/table/loans" component={LoanTable} />
-          <Route path="/table/search" component={SearchTable}/>
           <Route path="/table/lenders" component={LenderTable} />
           <Route path="/statistics" component={Statistic} />
           <Redirect from="/" to="/table/loans" />
