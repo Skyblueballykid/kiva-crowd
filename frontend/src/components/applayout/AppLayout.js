@@ -17,15 +17,7 @@ const { Search } = Input;
 class AppLayout extends React.Component {
   state = {
     collapsed: false,
-    query: ""
   };
-
-  handleInputChange = (event) => {
-    this.setState({
-    query : event.target.value
-    });
-  };
-
 
   toggle = () => {
     const { collapsed } = this.state;
@@ -33,7 +25,6 @@ class AppLayout extends React.Component {
       collapsed: !collapsed,
     });
   };
-
 
   render() {
     const { collapsed } = this.state;
@@ -48,8 +39,7 @@ class AppLayout extends React.Component {
             mode="inline"
             defaultSelectedKeys={['/table/loans']}
           >
-            {/* <Search placeholder="input search text" onSearch={value => console.log(value)} enterButton /> */}
-            <Input placeholder="input search text" value={this.state.query} onChange={this.handleInputChange} enterButton />
+            <Search placeholder="input search text" onSearch={value => console.log(value)} enterButton />
             <Menu.Item key="/table/loans">
               <Link to="/table/loans">
                 <InsertRowAboveOutlined />
