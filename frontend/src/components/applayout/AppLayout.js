@@ -12,7 +12,7 @@ import {
 import { Link } from 'react-router-dom';
 
 const { Header, Sider, Content } = Layout;
-const { Search } = Input;
+// const { Search } = Input;
 
 class AppLayout extends React.Component {
   state = {
@@ -48,6 +48,7 @@ class AppLayout extends React.Component {
             mode="inline"
             defaultSelectedKeys={['/table/loans']}
           >
+            {/* This is the antd search component we should consider using */}
             {/* <Search placeholder="input search text" onSearch={value => console.log(value)} enterButton /> */}
             <Input placeholder="input search text" value={this.state.query} onChange={this.handleInputChange} enterButton />
             <Menu.Item key="/table/loans">
