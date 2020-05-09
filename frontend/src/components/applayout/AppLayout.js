@@ -9,15 +9,20 @@ import {
   UserOutlined,
   PieChartOutlined,
 } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 const { Header, Sider, Content } = Layout;
 const { Search } = Input;
 
 class AppLayout extends React.Component {
   state = {
-    collapsed: false,
+    collapsed: false
   };
+
+  handleSearch = (searchQuery) => {
+    this.props.history.push("/table/search", {query: searchQuery});
+  };
+
 
   toggle = () => {
     const { collapsed } = this.state;
@@ -26,9 +31,9 @@ class AppLayout extends React.Component {
     });
   };
 
+
   render() {
     const { collapsed } = this.state;
-
 
     return (
       <Layout>
@@ -39,7 +44,9 @@ class AppLayout extends React.Component {
             mode="inline"
             defaultSelectedKeys={['/table/loans']}
           >
-            <Search placeholder="input search text" onSearch={value => console.log(value)} enterButton />
+            {/* This is the antd search component we should consider using */}
+            {/* <Search placeholder="input search text" onSearch={value => console.log(value)} enterButton /> */}
+            <Search placeholder="input search text" onSearch={this.handleSearch} enterButton />
             <Menu.Item key="/table/loans">
               <Link to="/table/loans">
                 <InsertRowAboveOutlined />
@@ -87,7 +94,10 @@ class AppLayout extends React.Component {
 }
 
 AppLayout.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func
+  }).isRequired
 }
 
-export default AppLayout;
+export default withRouter(AppLayout);
