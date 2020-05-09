@@ -5,12 +5,12 @@ const StyledDiv = styled.div`
   min-height: 88vh;
 `;
 
-const Statistic = () => {
+const Analysis = () => {
   return (
     <StyledDiv>
-      <h2>Statistics</h2>
+      <h2>Analysis</h2>
     </StyledDiv>
   );
 };
 
-export default Statistic;
+export default Analysis;
