@@ -121,13 +121,40 @@ class Stats_3List(generics.ListAPIView):
     serializer_class = LoanStatsAvgLendersGroupedBySectorAndActivitySerializer
 
 
+# Top 10 Countries with Loans
+class Stats_4List(APIView):
+    authentication_classes = []
+    permission_classes = []
 
-# class Stats_3List(APIView):
-#     authentication_classes = []
-#     permission_classes = []
+    def get(self, request, format=None):
+        data = Loan.objects.all()        # Perform database query
+        a = read_frame(data, fieldnames=['raised_time','country_name','loan_amount', 'sector_name'])           # Transform queryset into pandas dataframe 
+        a.columns = map(lambda x: str(x).upper(), a.columns)
+        #Top 5 Countries with most loans-------------- 
+        df = a
+        df = df[['COUNTRY_NAME','LOAN_AMOUNT']]
+        df = df.dropna()
+        df = df.set_index('COUNTRY_NAME')
+        df = df.groupby([df.index]).sum().sort_values(by = 'LOAN_AMOUNT', ascending=False ).head(10)
+        df.reset_index(level=0, inplace=True)
+        return Response(df)              # Return the result in JSON via Django REST Framework
+    
 
-#     def get(self, request, format=None):
-#         data = Loan.objects.all()        # Perform database query
-#         df = read_frame(data, fieldnames=['raised_time','country_name','loan_amount'])           # Transform queryset into pandas dataframe 
-#         print(df)
-#         return Response(df)              # Return the result in JSON via Django REST Framework
+
+# Top 10 Sectors with Loans
+class Stats_5List(APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request, format=None):
+        data = Loan.objects.all()        # Perform database query
+        a = read_frame(data, fieldnames=['raised_time','country_name','loan_amount', 'sector_name'])           # Transform queryset into pandas dataframe 
+        a.columns = map(lambda x: str(x).upper(), a.columns)
+        #Top 5 Countries with most loans-------------- 
+        df = a
+        df = df[['SECTOR_NAME','LOAN_AMOUNT']]
+        df = df.dropna()
+        df = df.set_index('SECTOR_NAME')
+        df = df.groupby([df.index]).sum().sort_values(by = 'LOAN_AMOUNT', ascending=False ).head(10)
+        df.reset_index(level=0, inplace=True)
+        return Response(df)              # Return the result in JSON via Django REST Framework
