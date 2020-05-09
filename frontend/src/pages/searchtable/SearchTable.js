@@ -5,29 +5,36 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Table, Popconfirm, Form } from 'antd';
+import PropTypes from 'prop-types';
 
 import EditableCell from '../../components/table/EditableCell';
 import { StyledDiv } from './SearchTable.styles';
 import COLUMNS from './SearchTable.columns';
-import query from '../../components/applayout/AppLayout';
 
 const { REACT_APP_API } = process.env;
 
-const SearchTable = () => {
+const SearchTable = (props) => {
     const [form] = Form.useForm();
     const [data, setData] = useState([]);
     const [editingKey, setEditingKey] = useState('');
+    const [loading, setLoading] = useState(false);
 
 
 useEffect(() => {
+    let query = "";
+    if (props.location.state && props.location.state.query) {
+      query = `?search=${props.location.state.query}`;
+    }
     const fetchData = async () => {
-        const res = await axios.get(`${REACT_APP_API}/api/loan/search?search={query}`);
+        setLoading(true);
+        const res = await axios.get(`${REACT_APP_API}/api/loan/search${query}`);
         const { results } = res.data;
         console.log(results);
         setData(results);
+        setLoading(false);
     };
     fetchData();
-    }, []);
+    }, [props.location.state]);
   
 
   const isEditing = (record) => record.id === editingKey;
@@ -59,7 +66,6 @@ useEffect(() => {
       console.log('Validate Failed:', errInfo);
     }
   };
-
     
 const columns = [
   ...COLUMNS,
@@ -126,10 +132,19 @@ const columns = [
                 defaultPageSize: 20,
                 showSizeChanger: false,
               }}
+              loading={loading}
             />
           </Form>
         </StyledDiv>
       );
+    };
+
+    SearchTable.propTypes = {
+      location: PropTypes.shape({
+        state: PropTypes.shape({
+          query: PropTypes.string
+        })
+      }).isRequired
     };
     
     export default SearchTable;
