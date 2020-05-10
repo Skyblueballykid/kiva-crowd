@@ -12,13 +12,20 @@ const StyledDiv = styled.div`
 const Analysis = () => {
   return (
     <StyledDiv>
-      <h4 class="center"><b>Analysis of Top Loans by Country and Sector</b></h4>
-
+      <h4 class="center"><b>Analysis of Top Loans by Country</b></h4>
+      <br/>
       <img src={ TOP_5_COUNTRY_LOANS_BAR } alt="TOP_5_COUNTRY" class="center"/>
+      <br/>
+      <h4 class="center"><b>Analysis of Top Loans by Sector</b></h4>
+      <br/>
       <img src= { TOP_5_SECTOR_LOANS_BAR } alt="TOP_5_SECTOR" class="center"/>
-      
-      <h4 class="center"><b>Detailed Analysis of Top 5 Countries and Sectors</b></h4>
+      <br/>
+      <h4 class="center"><b>Detailed Analysis of Top 5 Countries</b></h4>
+      <br/>
       <img src= { TOP_5_COUNTRY_LOANS_DETAIL } alt="TOP_5_COUNTRY_DETAIL" class="center"/>
+      <br/>
+      <h4 class="center"><b>Detailed Analysis of Top 5 Sectors</b></h4>
+      <br/>
       <img src= { TOP_5_SECTOR_LOANS_DETAIL } alt="TOP_5_COUNTRY_DETAIL" class="center"/>
     </StyledDiv>
   );
