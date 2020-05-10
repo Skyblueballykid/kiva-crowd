@@ -157,4 +157,3 @@ class Stats_5List(APIView):
         df = df.groupby([df.index]).sum().sort_values(by = 'LOAN_AMOUNT', ascending=False ).head(10)
         df.reset_index(level=0, inplace=True)
         return Response(df)              # Return the result in JSON via Django REST Framework
-
