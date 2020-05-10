@@ -8,6 +8,8 @@ import {
   InsertRowAboveOutlined,
   UserOutlined,
   PieChartOutlined,
+  InfoCircleOutlined,
+  BarChartOutlined,
 } from '@ant-design/icons';
 import { Link, withRouter } from 'react-router-dom';
 
@@ -62,7 +64,19 @@ class AppLayout extends React.Component {
             <Menu.Item key="/statistics">
               <Link to="/statistics">
                 <PieChartOutlined />
-                <span>Statistics View</span>
+                <span>Statistics</span>
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="/analysis">
+              <Link to="/analysis">
+                <BarChartOutlined />
+                <span>Analysis</span>
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="/about">
+              <Link to="/about">
+                <InfoCircleOutlined />
+                <span>About</span>
               </Link>
             </Menu.Item>
           </Menu>

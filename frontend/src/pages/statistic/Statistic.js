@@ -15,6 +15,7 @@ const Statistic = () => {
       <Stat1 />
       <Stat2 />
       <Stat3 />
+
     </StyledDiv>
   );
 };
