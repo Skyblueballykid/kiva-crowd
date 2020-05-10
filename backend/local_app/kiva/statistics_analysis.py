@@ -84,7 +84,6 @@ plt.tight_layout()
 
 # Plot of Top 5 Countries with most loans--------------
 plt.savefig("Stat Pictures/TOP_5_COUNTRY_LOANS_DETAIL.svg", format="svg")
-plt.show()
 
 # Top 5 Sectors with most loans
 df = a
