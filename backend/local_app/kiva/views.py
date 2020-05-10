@@ -14,7 +14,6 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 
-
 from .models import Lender, Loan, LoanStatsAvgLoanByCountry, LoanStatsCommonSectorsAndActivities,\
     LoanStatsAvgLendersGroupedBySectorAndActivity
 from .serializers import LenderSerializer, LoanSerializer, LoanStatsAvgLoanByCountrySerializer,\
