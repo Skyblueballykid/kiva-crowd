@@ -4,7 +4,7 @@
 ![Kiva Project Screenshot](project-screenshot.png)
 
 
-### Lightsail instructions
+#### Lightsail instructions
 
 1. Login to the AWS instance (credentials in the team google doc)
 
