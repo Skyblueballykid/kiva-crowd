@@ -92,7 +92,7 @@ class Loan(models.Model):
 
 
 class LoanStatsAvgLoanByCountry(models.Model):
-    country_name = models.TextField()
+    country_code = models.TextField()
     average_loan = models.FloatField()
 
     class Meta:

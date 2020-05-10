@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@amcharts/amcharts4-geodata@^4.1.15":
+  version "4.1.15"
+  resolved "https://registry.yarnpkg.com/@amcharts/amcharts4-geodata/-/amcharts4-geodata-4.1.15.tgz#3972f036da66e8361aba5bb246e146b87111c711"
+  integrity sha512-H2uJxZrDzMzGE/a+UlxwD2toybuWq8auXMNoOpaPvXYUk9SqCwBLXjlwatZHyT3x3HohlpjEww5N6hdK1IMrUQ==
+
 "@amcharts/amcharts4@^4.9.19":
   version "4.9.19"
   resolved "https://registry.yarnpkg.com/@amcharts/amcharts4/-/amcharts4-4.9.19.tgz#7b8c632a106bb8a4d076a5d8abb1135a46ef45de"

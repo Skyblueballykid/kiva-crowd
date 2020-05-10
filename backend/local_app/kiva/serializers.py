@@ -60,7 +60,7 @@ class LoanStatsAvgLoanByCountrySerializer(serializers.ModelSerializer):
     class Meta:
         model = LoanStatsAvgLoanByCountry
         fields = (
-            'country_name',
+            'country_code',
             'average_loan'
         )
 
