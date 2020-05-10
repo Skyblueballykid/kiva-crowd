@@ -46,7 +46,7 @@ plt.ylabel('Loan Amount')
 plt.xlabel('Countries')
 plt.title('Countries with most loans')
 
-
+plt.tight_layout()
 plt.savefig("TOP_5_COUNTRY_LOANS_BAR.svg", format="svg")
 
 
@@ -93,12 +93,10 @@ for i in top_5_countries:
 
 plt.tight_layout()
 
-plt.show()
-
 
 # Plot of Top 5 Countries with most loans--------------
 plt.savefig("TOP_5_COUNTRY_LOANS_DETAIL.svg", format="svg")
-
+plt.show()
 
 
 
@@ -120,7 +118,7 @@ plt.ylabel('Loan Amount')
 plt.xlabel('Sectors')
 plt.title('Sectors with most loans')
 
-
+plt.tight_layout()
 plt.savefig("TOP_5_SECTOR_LOANS_BAR.svg", format="svg")
 
 
@@ -168,8 +166,7 @@ for i in top_5_sectors:
 
 plt.tight_layout()
 
-plt.show()
-
 
 # Plot of Top 5 Sectors with most loans--------------
 plt.savefig("TOP_5_SECTOR_LOANS_DETAIL.svg", format="svg")
+plt.show()
