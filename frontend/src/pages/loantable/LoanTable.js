@@ -21,7 +21,6 @@ const LoanTable = () => {
     const fetchData = async () => {
       const res = await axios.get(`${REACT_APP_API}/api/loan/`);
       const { results } = res.data;
-      console.log(results);
       setData(results);
     };
     fetchData();
