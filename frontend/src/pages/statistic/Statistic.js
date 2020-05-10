@@ -11,7 +11,7 @@ const StyledDiv = styled.div`
 const Statistic = () => {
   return (
     <StyledDiv>
-      <h2>Statistic</h2>
+      <h4>Statistic</h4>
       <Stat1 />
       <Stat2 />
       <Stat3 />

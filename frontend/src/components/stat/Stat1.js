@@ -19,7 +19,6 @@ class Stat1 extends Component {
     // Add data
     const results = await getData();
     const formattedData = prepareData(results);
-    console.log(formattedData);
     this.setState({ data: formattedData });
 
     // Create map instance
@@ -188,7 +187,7 @@ class Stat1 extends Component {
     return (
       <div
         id="stat1"
-        style={{ width: '90%', height: '550px', padding: '12px' }}
+        style={{ width: '90%', height: '580px', padding: '12px' }}
       ></div>
     );
   }
