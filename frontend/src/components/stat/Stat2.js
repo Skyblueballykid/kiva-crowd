@@ -20,64 +20,57 @@ class Stat2 extends Component {
     chart.scrollbarX = new am4core.Scrollbar();
 
     // Add data
-    const data = await getData();
-    // console.log(data);
-    // prepareData();
+    const responseData = await getData();
+    const data = prepareData(responseData);
 
     this.setState({ data })
     chart.data = this.state.data;
 
     // Create axes
     let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-    categoryAxis.dataFields.category = 'sector_name';
+    categoryAxis.dataFields.category = 'sector_and_activity_name';
     categoryAxis.renderer.grid.template.location = 0;
     categoryAxis.renderer.minGridDistance = 60;
     categoryAxis.tooltip.disabled = true;
+    categoryAxis.title.text = "Sector and Activity"
 
     let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
     valueAxis.renderer.minWidth = 50;
     valueAxis.min = 0;
     valueAxis.cursorTooltipEnabled = false;
+    valueAxis.title.text = "Avg Loan"
+
+    let valueAxisTwo = chart.yAxes.push(new am4charts.ValueAxis());
+    valueAxisTwo.min = 0;
+    valueAxisTwo.cursorTooltipEnabled = false;
+    valueAxisTwo.renderer.opposite = true;
+    valueAxisTwo.title.text = "Avg Lender Term in Months"
 
     // Create series
     let series = chart.series.push(new am4charts.ColumnSeries());
     series.sequencedInterpolation = true;
-    series.dataFields.valueY = 'count_of_loans';
-    series.dataFields.categoryX = 'sector_name';
-    series.tooltipText = '[{categoryX}: bold]{valueY}[/]';
+    series.dataFields.valueY = 'average_loan';
+    series.dataFields.categoryX = 'sector_and_activity_name';
     series.columns.template.strokeWidth = 0;
 
+    series.tooltipText = "{valueY}";
     series.tooltip.pointerOrientation = 'vertical';
 
     series.columns.template.column.cornerRadiusTopLeft = 10;
     series.columns.template.column.cornerRadiusTopRight = 10;
-    series.columns.template.column.fillOpacity = 0.8;
+    series.columns.template.column.fillOpacity = 0.7;
 
     series.columns.template.adapter.add('fill', function (fill, target) {
       return chart.colors.getIndex(target.dataItem.index);
     });
 
-    // let paretoValueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-    // paretoValueAxis.renderer.opposite = true;
-    // paretoValueAxis.min = 0;
-    // paretoValueAxis.max = 100;
-    // paretoValueAxis.strictMinMax = true;
-    // paretoValueAxis.renderer.grid.template.disabled = true;
-    // paretoValueAxis.numberFormatter = new am4core.NumberFormatter();
-    // paretoValueAxis.numberFormatter.numberFormat = "#'%'";
-    // paretoValueAxis.cursorTooltipEnabled = false;
-
-    // let paretoSeries = chart.series.push(new am4charts.LineSeries());
-    // paretoSeries.dataFields.valueY = 'pareto';
-    // paretoSeries.dataFields.categoryX = 'country';
-    // paretoSeries.yAxis = paretoValueAxis;
-    // paretoSeries.tooltipText = "pareto: {valueY.formatNumber('#.0')}%[/]";
-    // paretoSeries.bullets.push(new am4charts.CircleBullet());
-    // paretoSeries.strokeWidth = 2;
-    // paretoSeries.stroke = new am4core.InterfaceColorSet().getFor(
-    //   'alternativeBackground'
-    // );
-    // paretoSeries.strokeOpacity = 0.5;
+    let seriesTwo = chart.series.push(new am4charts.LineSeries());
+    seriesTwo.sequencedInterpolation = true;
+    seriesTwo.dataFields.valueY = 'average_lender_term_in_months';
+    seriesTwo.dataFields.categoryX = 'sector_and_activity_name';
+    seriesTwo.yAxis = valueAxisTwo;
+    seriesTwo.strokeWidth = 7;
+    seriesTwo.tooltipText = "{valueY}";
 
     // Cursor
     chart.cursor = new am4charts.XYCursor();
@@ -112,5 +105,12 @@ async function getData() {
 }
 
 function prepareData(data) {
-  return
+  return data.map(function(x) {
+    return {
+      sector_and_activity_name: `${x.sector_name} \n ${x.activity_name}`,
+      average_lender_term_in_months: x.average_lender_term_in_months,
+      count_of_loans: x.count_of_loans,
+      average_loan: x.average_loan
+    };
+  }).sort((a, b) => (a.average_loan > b.average_loan) ? -1 : 1).slice(0, 10);
 }
