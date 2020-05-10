@@ -10,9 +10,9 @@ class Insights_sql(object):
     select
         1 as id,
         trunc(avg(loan_amount)) as average_loan,
-        country_name
+        country_code
     from loan
-    group by country_name
+    group by country_code
     order by avg(loan_amount) desc;
     '''
     def get_average_loan_per_country(self):
@@ -20,7 +20,7 @@ class Insights_sql(object):
         return query
 
     '''
-    2. Insights on Loans and Lenders : Most common sectors and activities for loan use 
+    2. Insights on Loans and Lenders : Most common sectors and activities for loan use
     Note: this query uses a stored procedure (in postgresql this is a function) created with the following query:
     create or replace function get_common_sectors_and_activities()
     returns table(
@@ -34,11 +34,11 @@ class Insights_sql(object):
     as $$
     begin
         return query
-        select 
+        select
             1 as id,
             l.sector_name,
             l.activity_name,
-            trunc(avg(l.lender_term)) as average_lender_term_in_months, 
+            trunc(avg(l.lender_term)) as average_lender_term_in_months,
             count(l.sector_name) as count_of_loans,
             trunc(avg(l.loan_amount)) as average_loan
         from loan l
@@ -57,10 +57,10 @@ class Insights_sql(object):
     '''
     def get_lenders_per_loan_by_activity(self):
         query = """
-            select 
+            select
                 1 as id,
-                trunc(avg(a.count_of_lenders)) as average_lenders_per_loan, 
-                b.sector_name, 
+                trunc(avg(a.count_of_lenders)) as average_lenders_per_loan,
+                b.sector_name,
                 b.activity_name
             from (
                 SELECT
@@ -69,8 +69,8 @@ class Insights_sql(object):
                 FROM loan_lender
                 order by count_of_lenders desc
             ) a
-            inner join loan b on a.loan_id = b.id 
-            group by b.sector_name, b.activity_name 
+            inner join loan b on a.loan_id = b.id
+            group by b.sector_name, b.activity_name
             order by average_lenders_per_loan desc
         """
         return query

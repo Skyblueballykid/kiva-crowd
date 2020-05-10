@@ -98,7 +98,7 @@ function prepareData(data) {
     obj[i['sector_name']] = {
       sector_name: i['sector_name'],
       children: [
-        ...obj[i['sector_name']] ? obj[i['sector_name']].children: [],
+        ...obj[i.sector_name] ? obj[i.sector_name].children: [],
         {
           activity_name: i.activity_name,
           average_lenders_per_loan: i.average_lenders_per_loan,
