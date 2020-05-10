@@ -76,6 +76,7 @@ class Loan(models.Model):
     repayment_interval = models.CharField(max_length=50, blank=True, null=True)
     distribution_model = models.CharField(max_length=50, blank=True, null=True)
 
+
     def __str__(self):
         output = "id: {}, loan_name: {}".format(
             self.id, self.loan_name

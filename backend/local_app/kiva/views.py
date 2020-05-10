@@ -3,6 +3,17 @@ from django_filters import rest_framework as filters
 from django.core import serializers
 from django.contrib.postgres.search import SearchVector
 from django.db import transaction
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+
+# Adding these for Panda + Numpy analysis 
+from django_pandas.io import read_frame
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+
 
 from .models import Lender, Loan, LoanStatsAvgLoanByCountry, LoanStatsCommonSectorsAndActivities,\
     LoanStatsAvgLendersGroupedBySectorAndActivity
@@ -33,7 +44,6 @@ class LenderDetail(generics.RetrieveUpdateDestroyAPIView):
     UPDATE Lenders WHERE primary_name=... SET fields= ...
     AND
     DELETE * FROM Lenders WHERE primary_name = ...
-
     Note: django uses transactions by default to guarantee integrity of orm operations. Using transaction.atomic() below
     guarantees that the database changes are only committed if the entire http request succeeds (see
     https://docs.djangoproject.com/en/3.0/topics/db/transactions/#tying-transactions-to-http-requests)
@@ -78,7 +88,6 @@ class LoanDetail(generics.RetrieveUpdateDestroyAPIView):
     UPDATE Loans WHERE loan_id=... SET fields= ...
     AND
     DELETE * FROM Loans WHERE loan_id = ...
-
     Note: django uses transactions by default to guarantee integrity of orm operations. Using transaction.atomic() below
     guarantees that the database changes are only committed if the entire http request succeeds (see
     https://docs.djangoproject.com/en/3.0/topics/db/transactions/#tying-transactions-to-http-requests)
@@ -110,3 +119,42 @@ class Stats_3List(generics.ListAPIView):
     query = Stats.get_lenders_per_loan_by_activity()
     queryset = LoanStatsAvgLendersGroupedBySectorAndActivity.objects.raw(query)
     serializer_class = LoanStatsAvgLendersGroupedBySectorAndActivitySerializer
+
+
+# Top 10 Countries with Loans
+class Stats_4List(APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request, format=None):
+        data = Loan.objects.all()        # Perform database query
+        a = read_frame(data, fieldnames=['raised_time','country_name','loan_amount', 'sector_name'])           # Transform queryset into pandas dataframe 
+        a.columns = map(lambda x: str(x).upper(), a.columns)
+        #Top 5 Countries with most loans-------------- 
+        df = a
+        df = df[['COUNTRY_NAME','LOAN_AMOUNT']]
+        df = df.dropna()
+        df = df.set_index('COUNTRY_NAME')
+        df = df.groupby([df.index]).sum().sort_values(by = 'LOAN_AMOUNT', ascending=False ).head(10)
+        df.reset_index(level=0, inplace=True)
+        return Response(df)              # Return the result in JSON via Django REST Framework
+    
+
+
+# Top 10 Sectors with Loans
+class Stats_5List(APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request, format=None):
+        data = Loan.objects.all()        # Perform database query
+        a = read_frame(data, fieldnames=['raised_time','country_name','loan_amount', 'sector_name'])           # Transform queryset into pandas dataframe 
+        a.columns = map(lambda x: str(x).upper(), a.columns)
+        #Top 5 Countries with most loans-------------- 
+        df = a
+        df = df[['SECTOR_NAME','LOAN_AMOUNT']]
+        df = df.dropna()
+        df = df.set_index('SECTOR_NAME')
+        df = df.groupby([df.index]).sum().sort_values(by = 'LOAN_AMOUNT', ascending=False ).head(10)
+        df.reset_index(level=0, inplace=True)
+        return Response(df)              # Return the result in JSON via Django REST Framework
