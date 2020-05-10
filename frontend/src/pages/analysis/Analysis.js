@@ -15,9 +15,8 @@ const Analysis = () => {
       <h4><b>Analysis of Top Loans by Country and Sector</b></h4>
 
       <img src={ TOP_5_COUNTRY_LOANS_BAR } alt="TOP_5_COUNTRY" />
-      <br />
       <img src= { TOP_5_SECTOR_LOANS_BAR } alt="TOP_5_SECTOR" />
-
+      <br />
       <h4><b>Detailed Analysis of Top 5 Countries and Sectors</b></h4>
       <img src= { TOP_5_COUNTRY_LOANS_DETAIL } alt="TOP_5_COUNTRY_DETAIL" />
       <img src= { TOP_5_SECTOR_LOANS_DETAIL } alt="TOP_5_COUNTRY_DETAIL" />
