@@ -10,11 +10,15 @@ const StyledDiv = styled.div`
 const Statistic = () => {
   return (
     <StyledDiv>
+
+      <h2>Statistics</h2>
+
       <h2>Statistic View</h2>
 
       <Stat2 />
 
       <Stat3 />
+      
     </StyledDiv>
   );
 };
