@@ -13,7 +13,6 @@ const Statistic = () => {
 
       <h2>Statistics</h2>
 
-      <h2>Statistic View</h2>
 
       <Stat2 />
 
