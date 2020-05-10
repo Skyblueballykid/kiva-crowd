@@ -49,7 +49,7 @@ const About = () => {
       <br />
       <h4> Presented in partial completion of the requirements of the Master&apos;s of Computer Science degree
     <br />
-        at the University of Illinois at Urbana-Champaign by: Nitish Singla, Skylar Ripley, Trang Nguyen
+        at the University of Illinois at Urbana-Champaign by: Nitish Singla, Skylar Ripley, Trung Nguyen
     <br />
         and Thomas Kalnik.</h4>
     </StyledDiv>
