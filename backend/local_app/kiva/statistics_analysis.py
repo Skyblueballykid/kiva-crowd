@@ -7,14 +7,12 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
+import statistics_analysis.py
 
 # Adding these for Panda + Numpy analysis 
 from django_pandas.io import read_frame
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
-
-
 from .models import Lender, Loan, LoanStatsAvgLoanByCountry, LoanStatsCommonSectorsAndActivities,\
     LoanStatsAvgLendersGroupedBySectorAndActivity
 
@@ -23,10 +21,6 @@ from .models import Lender, Loan, LoanStatsAvgLoanByCountry, LoanStatsCommonSect
 data = Loan.objects.all()        # Perform database query
 a = read_frame(data, fieldnames=['raised_time','country_name','loan_amount', 'sector_name'])           # Transform queryset into pandas dataframe 
 a.columns = map(lambda x: str(x).upper(), a.columns)
-print(a)
-
-
-
 
 df = a
 
@@ -47,15 +41,11 @@ plt.xlabel('Countries')
 plt.title('Countries with most loans')
 
 plt.tight_layout()
-plt.savefig("TOP_5_COUNTRY_LOANS_BAR.svg", format="svg")
-
-
-
+plt.savefig("Stat Pictures/TOP_5_COUNTRY_LOANS_BAR.svg", format="svg")
 
 df = df.head(5)
 df = list(df.index)
 top_5_countries = df
-
 
 # Now get charts for loans raised over time for the top 5 countries-------------
 
@@ -90,15 +80,10 @@ for i in top_5_countries:
     df['RAISED_TIME'] = df['RAISED_TIME'].astype(str).str[0:8] + '01'
     df = df.set_index('RAISED_TIME')
 
-
 plt.tight_layout()
 
-
 # Plot of Top 5 Countries with most loans--------------
-plt.savefig("TOP_5_COUNTRY_LOANS_DETAIL.svg", format="svg")
-plt.show()
-
-
+plt.savefig("Stat Pictures/TOP_5_COUNTRY_LOANS_DETAIL.svg", format="svg")
 
 # Top 5 Sectors with most loans
 df = a
@@ -119,15 +104,11 @@ plt.xlabel('Sectors')
 plt.title('Sectors with most loans')
 
 plt.tight_layout()
-plt.savefig("TOP_5_SECTOR_LOANS_BAR.svg", format="svg")
-
-
-
+plt.savefig("Stat Pictures/TOP_5_SECTOR_LOANS_BAR.svg", format="svg")
 
 df = df.head(5)
 df = list(df.index)
 top_5_sectors = df
-
 
 # Now get charts for loans raised over time for the top 5 sectors-------------
 
@@ -162,11 +143,7 @@ for i in top_5_sectors:
     df['RAISED_TIME'] = df['RAISED_TIME'].astype(str).str[0:8] + '01'
     df = df.set_index('RAISED_TIME')
 
-
-
 plt.tight_layout()
-
-
 # Plot of Top 5 Sectors with most loans--------------
-plt.savefig("TOP_5_SECTOR_LOANS_DETAIL.svg", format="svg")
+plt.savefig("Stat Pictures/TOP_5_SECTOR_LOANS_DETAIL.svg", format="svg")
 plt.show()
