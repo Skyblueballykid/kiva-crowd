@@ -226,6 +226,8 @@ plt.tight_layout()
 
 # Plot of Top 5 Countries with most loans--------------
 plt.savefig("Stat Pictures/TOP_5_COUNTRY_LOANS_DETAIL.svg", format="svg")
+plt.cla()
+plt.clf()
 
 # Top 5 Sectors with most loans
 df = a
@@ -233,6 +235,7 @@ df = df[['SECTOR_NAME','LOAN_AMOUNT']]
 df = df.dropna()
 df = df.set_index('SECTOR_NAME')
 df = df.groupby([df.index]).sum().sort_values(by = 'LOAN_AMOUNT', ascending=False ).head(10)
+
 
 objects = tuple(list(df.index))
 y_pos = np.arange(len(objects))
@@ -287,3 +290,5 @@ for i in top_5_sectors:
 plt.tight_layout()
 # Plot of Top 5 Sectors with most loans--------------
 plt.savefig("Stat Pictures/TOP_5_SECTOR_LOANS_DETAIL.svg", format="svg")
+plt.cla()
+plt.clf()
