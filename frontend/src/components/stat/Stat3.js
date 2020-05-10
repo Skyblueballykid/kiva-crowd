@@ -24,7 +24,6 @@ class Stat3 extends Component {
     const data = await getData();
     const formattedData = prepareData(data);
     this.setState({ data: Object.values(formattedData) });
-    console.log(this.state.data)
     chart.data = this.state.data;
 
     // define data fields
