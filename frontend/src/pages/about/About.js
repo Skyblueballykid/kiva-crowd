@@ -63,6 +63,11 @@ const About = () => {
           <li>Stored Procedures</li>
           <li>Atomic Transactions</li>
         </ul>
+        To view our public GitHub repo, visit:
+        <a href="https://github.com/Skyblueballykid/kiva-crowd">Kiva-Crowd</a> 
+        <br/>
+        To view our REST API Swagger specification, visit:
+        <a href="http://kiva-cs411.info:5000/swagger/">Swagger</a>
       </Text>
 
       <Title level={4}>
